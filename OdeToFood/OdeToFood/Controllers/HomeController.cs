@@ -10,9 +10,9 @@ namespace OdeToFood.Controllers
     public class HomeController : Controller
     {
         IResturantData ResturantData;
-        public HomeController()
+        public HomeController(IResturantData resturantData)
         {
-            ResturantData = new InMemoryResturant();
+            this.ResturantData = resturantData;
         }
         public ActionResult Index()
         {
