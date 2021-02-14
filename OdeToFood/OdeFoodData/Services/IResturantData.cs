@@ -9,6 +9,6 @@ namespace OdeFoodData.Services
     public interface IResturantData
     {
         List<Resturant> GetAll();
-
+        Resturant Get(int id);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using OdeFoodData.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OdeFoodData.Services
 {
@@ -17,6 +18,12 @@ namespace OdeFoodData.Services
                 new Resturant(){Id=4,Name="Nala royal ",Cuisine=CuisineType.Indian }
             };
         }
+
+        public Resturant Get(int id)
+        {
+            return resturants.FirstOrDefault(r=>r.Id==id);
+        }
+
         public List<Resturant> GetAll()
         {
             return resturants;
