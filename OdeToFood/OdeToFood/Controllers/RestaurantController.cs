@@ -1,4 +1,5 @@
-﻿using OdeFoodData.Services;
+﻿using OdeFoodData.Models;
+using OdeFoodData.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,13 @@ namespace OdeToFood.Controllers
         {
             this.resturantData = resturantData;
         }
+        [HttpGet]
         public ActionResult Index()
         {
             var model = resturantData.GetAll();
             return View(model);
         }
+        [HttpGet]
         public ActionResult Details(int id)
         {
             var model = resturantData.Get(id);
@@ -28,6 +31,43 @@ namespace OdeToFood.Controllers
                 return View("NotFound");
             }
             return View(model);
+        }
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Resturant resturant )
+        {
+            if (ModelState.IsValid)
+            {
+                resturantData.Add(resturant);
+                return RedirectToAction("Details",new { id= resturant.Id});
+            }
+            return View();
+        }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var model = resturantData.Get(id);
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Resturant resturant)
+        {
+            if (ModelState.IsValid)
+            {
+                resturantData.Update(resturant);
+                return RedirectToAction("Details",new { id=resturant.Id});
+            }
+            return View(resturant);
         }
     }
 }
