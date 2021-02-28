@@ -56,7 +56,7 @@ namespace OdeToFood.Controllers
             {
                 return HttpNotFound();
             }
-            return View();
+            return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
