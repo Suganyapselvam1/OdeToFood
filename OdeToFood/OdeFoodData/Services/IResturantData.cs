@@ -8,10 +8,11 @@ namespace OdeFoodData.Services
 {
     public interface IResturantData
     {
-        List<Resturant> GetAll();
+        IEnumerable<Resturant> GetAll();
         Resturant Get(int id);
         void Add(Resturant resturant);
         void Update(Resturant resturant);
+        void Delete(int id);
         
     }
 }

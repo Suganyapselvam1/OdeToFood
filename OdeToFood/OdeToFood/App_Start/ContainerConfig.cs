@@ -16,7 +16,8 @@ namespace OdeToFood
         internal static void RegisterContainer(HttpConfiguration httpConfiguration)
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<InMemoryResturant>().As<IResturantData>().SingleInstance();
+            builder.RegisterType<SqlRestaurant>().As<IResturantData>().InstancePerRequest();
+            builder.RegisterType<OdeToFoodDbContext>().InstancePerRequest();
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             builder.RegisterApiControllers(typeof(MvcApplication).Assembly);
             var container = builder.Build();

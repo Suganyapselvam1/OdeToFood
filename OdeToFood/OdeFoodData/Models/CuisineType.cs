@@ -8,7 +8,7 @@ namespace OdeFoodData.Models
 {
     public enum CuisineType
     {
-        None,
+        None=0,
         Indian,
         Italian,
         French,

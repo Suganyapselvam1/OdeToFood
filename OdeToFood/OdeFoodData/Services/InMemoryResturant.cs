@@ -25,12 +25,21 @@ namespace OdeFoodData.Services
             resturant.Id = resturants.Max(r=>r.Id)+1;
         }
 
+        public void Delete(int id)
+        {
+            var resturant = Get(id);
+            if (resturant != null)
+            {
+                resturants.Remove(resturant);
+            }
+        }
+
         public Resturant Get(int id)
         {
             return resturants.FirstOrDefault(r=>r.Id==id);
         }
 
-        public List<Resturant> GetAll()
+        public IEnumerable<Resturant> GetAll()
         {
             return resturants;
         }
